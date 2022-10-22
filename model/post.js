@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const PostsSchema = new Schema({
   workName: { type: String, default: "", require: true },
@@ -8,9 +8,10 @@ const PostsSchema = new Schema({
   salary: { type: Number, require: true },
   hinhThucLamViec: { type: String, require: true },
   sex: { type: String, require: true },
-  amount: { type: String, require: true },
+  amount: { type: Number, require: true },
   level: { type: String, require: true },
-  exp: {type: String, require: true}
-})
+  exp: { type: String, require: true },
+  detailInfo: { type: String, require: true },
+});
 
-module.exports = mongoose.model('post', PostsSchema)
+module.exports = mongoose.model("post", PostsSchema);
