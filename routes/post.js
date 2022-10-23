@@ -81,13 +81,28 @@ Router.post("/add-cv", async (req, res) => {
   }
 });
 
-Router.get("/", async (req, res) => {
+Router.post("/", async (req, res) => {
+  const page = req.body.page;
   try {
     const _res = await PostSchema.find();
 
-    return res.status(200).json({ success: true, data: _res });
+    return res.status(200).json({
+      success: true,
+      data: _res.reverse().slice((page - 1) * 12, 12 * page),
+      count: _res.length,
+    });
   } catch (err) {
     return res.status(400).json({ success: false, message: err });
   }
 });
+
+//remove all
+// Router.post("/remove", async (req, res) => {
+//   try {
+//     await PostSchema.remove();
+//     return res.status(200).json("xóa thành công");
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 module.exports = Router;
