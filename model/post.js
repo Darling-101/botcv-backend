@@ -14,7 +14,8 @@ const PostsSchema = new Schema({
   detailInfo: { type: String, require: true },
   creatorId: { type: String, require: true },
   isConfirm: { type: Boolean, default: false },
-  Cv: {type: Array, default: []}
+  Cv: { type: Array, default: [] },
+  companyName: { type: String, require: true },
 });
 
 module.exports = mongoose.model("post", PostsSchema);

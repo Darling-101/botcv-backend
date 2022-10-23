@@ -80,4 +80,14 @@ Router.post("/add-cv", async (req, res) => {
       .json({ success: true, message: "Gửi CV không thành công!" });
   }
 });
+
+Router.get("/", async (req, res) => {
+  try {
+    const _res = await PostSchema.find();
+
+    return res.status(200).json({ success: true, data: _res });
+  } catch (err) {
+    return res.status(400).json({ success: false, message: err });
+  }
+});
 module.exports = Router;
