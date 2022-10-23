@@ -66,10 +66,10 @@ Router.post("/get-my-post", async (req, res) => {
 Router.post("/add-cv", async (req, res) => {
   const Cv_Url = req.body.Cv_Url;
   const postId = req.body.postId;
-  const senderId = req.body.senderId;
+  const sender = req.body.sender;
   try {
     const _res = await PostSchema.findByIdAndUpdate(postId, {
-      $push: { Cv: { sender: senderId, url: Cv_Url } },
+      $push: { Cv: { sender: sender, url: Cv_Url } },
     });
 
     res.status(200).json({ success: true, message: "Gửi CV thành công!" });
