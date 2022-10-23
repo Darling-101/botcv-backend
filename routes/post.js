@@ -23,7 +23,11 @@ Router.post("/create", async (req, res) => {
     console.log(err);
     return res
       .status(400)
-      .json({ success: false, message: "Tạo bài tuyển dụng không thành công" });
+      .json({
+        success: false,
+        message: "Tạo bài tuyển dụng không thành công",
+        post: newPost,
+      });
   }
 });
 
