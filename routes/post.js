@@ -21,13 +21,11 @@ Router.post("/create", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    return res
-      .status(400)
-      .json({
-        success: false,
-        message: "Tạo bài tuyển dụng không thành công",
-        post: newPost,
-      });
+    return res.status(400).json({
+      success: false,
+      message: "Tạo bài tuyển dụng không thành công",
+      post: newPost,
+    });
   }
 });
 
@@ -87,12 +85,15 @@ Router.post("/add-cv", async (req, res) => {
 
 Router.post("/", async (req, res) => {
   const page = req.body.page;
+  const num_per_page = req.body.num_per_page;
   try {
     const _res = await PostSchema.find();
 
     return res.status(200).json({
       success: true,
-      data: _res.reverse().slice((page - 1) * 12, 12 * page),
+      data: _res
+        .reverse()
+        .slice((page - 1) * num_per_page, num_per_page * page),
       count: _res.length,
     });
   } catch (err) {
